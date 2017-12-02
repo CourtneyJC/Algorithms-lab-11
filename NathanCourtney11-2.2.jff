@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 6.4.--><structure>
+	<type>context-free pumping lemma</type>
+	<name>a^k b^n c^n d^j : j != k</name>
+	<first_player>Human</first_player>
+	<m>4</m>
+	<w>aaaabbbbccccddddd</w>
+	<i>0</i>
+	<uLength>6</uLength>
+	<vLength>1</vLength>
+	<xLength>1</xLength>
+	<yLength>1</yLength>
+	<attempt>U = aaaabb;   V = b;   X = b;   Y = c;   Z = cccddddd; I = 0; &lt;i&gt;Won&lt;/i&gt;</attempt>
+</structure>
