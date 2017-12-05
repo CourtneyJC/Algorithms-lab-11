@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class Huffman {
-    Node root;
-    ArrayList<Code> charCodes = new ArrayList<>();
+    private Node root;
+    private ArrayList<Code> charCodes = new ArrayList<>();
 
     public Huffman(ArrayList<CharFreqPair> charFreqs){
         PriorityQueue<Node> queue = new PriorityQueue<Node>();
@@ -32,6 +32,7 @@ public class Huffman {
 
     }
 
+    // Recursively travel Huffman tree to find the encodings
     public void makeCodes(String codeSoFar, Node node){
         if(node.leaf){
             charCodes.add(new Code(node.chr, codeSoFar));
@@ -42,26 +43,30 @@ public class Huffman {
         //TODO I think this will work correctly
     }
 
-//    public String encodeString(String toEnc){
-//        String str = "";
-//        int length = toEnc.length();
-//
-//        for (int i = 0; i < length; i++){
-//            str = str + encodeChar(toEnc.charAt(i), root, "");
-//        }
-//
-//        return str;
-//    }
-//
-//    public String encodeChar(char chr, Node node, String path){
-//        if(node.leaf && node.chr == chr){
-//            return path;
-//        }
-//        encodeChar(chr, node.one, path + "1");
-//        encodeChar(chr, node.zero, path + "0");
-//
-//        return null;//TODO fix
-//    }
+    public String encodeString(String toEnc){
+        String code = "";
+
+        for (char chr : toEnc.toCharArray()){
+            code = code + encodeChr(chr);
+        }
+
+        return code;
+    }
+
+    //Uses arraylist of codes to find the code for this character
+    public String encodeChr(char chr){
+        String enCode = "";
+
+        for (int i = 0; i < charCodes.size(); i++){
+            Code code = charCodes.get(i);
+            if (code.chr == chr){
+                enCode = code.code;
+                break;
+            }
+        }
+
+        return enCode;
+    }
 
     public class Node implements Comparable<Node>{
         Node zero;
